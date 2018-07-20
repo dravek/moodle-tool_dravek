@@ -20,7 +20,7 @@ global $DB;
 
 $courseid = required_param('id', PARAM_INT);
 
-$url = new moodle_url('/admin/tool/dravek/index.php',array('id' => $courseid));
+$url = new moodle_url('/admin/tool/dravek/index.php', array('id' => $courseid));
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
 $PAGE->set_pagelayout('report');
@@ -30,9 +30,9 @@ $PAGE->set_heading(get_string('pluginname', 'tool_dravek'));
 $PAGE->navbar->add(get_string('plugin'), new moodle_url($url));
 
 $users = $DB->get_record_sql('SELECT count(*) as total FROM {user}');
-var_dump($users);
+$total = $users->total;
 
 echo $OUTPUT->header();
 echo html_writer::span(get_string('helloworld', 'tool_dravek', ['id' => $courseid]));
-echo html_writer::span(get_string('totalusers', 'tool_dravek', ['total' => $users->total]));
+echo html_writer::span(get_string('testusers', 'tool_dravek', ['total' => $total]));
 echo $OUTPUT->footer();

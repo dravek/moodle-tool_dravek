@@ -16,4 +16,4 @@
 
 $string['pluginname'] = 'My first Moodle plugin';
 $string['helloworld'] = 'Hello World {$a->id}';
-$string['totalusers'] = 'Total Users: {$a->total}';
+$string['testusers'] = 'Total Users: {$a->total}';

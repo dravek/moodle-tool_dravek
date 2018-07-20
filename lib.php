@@ -16,7 +16,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-function tool_dravek_extend_navigation_course($navigation, $course, $context){
+function tool_dravek_extend_navigation_course($navigation, $course, $context) {
     global $PAGE;
     $courseid = $PAGE->course->id;
 
