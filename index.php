@@ -33,6 +33,6 @@ $users = $DB->get_record_sql('SELECT count(*) as total FROM {user}');
 $total = $users->total;
 
 echo $OUTPUT->header();
-echo html_writer::span(get_string('helloworld', 'tool_dravek', ['id' => $courseid]));
-echo html_writer::span(get_string('testusers', 'tool_dravek', ['total' => $total]));
+echo html_writer::div(get_string('helloworld', 'tool_dravek', ['id' => $courseid]));
+echo html_writer::div(get_string('testusers', 'tool_dravek', ['total' => $total]));
 echo $OUTPUT->footer();
