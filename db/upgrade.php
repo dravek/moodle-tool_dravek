@@ -52,6 +52,5 @@ function xmldb_tool_dravek_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2018072004, 'tool', 'dravek');
     }
 
-
     return true;
 }

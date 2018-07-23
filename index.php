@@ -43,11 +43,11 @@ echo $OUTPUT->header();
 echo html_writer::div(get_string('helloworld', 'tool_dravek', ['id' => $courseid]));
 echo html_writer::div(get_string('testusers', 'tool_dravek', ['total' => $total]));
 
-//$userinput = 'no <b>tags</b> allowed in strings';
+ //$userinput = 'no <b>tags</b> allowed in strings';
 $userinput = '<span class="multilang" lang="en">RIGHT</span><span class="multilang" lang="fr">WRONG</span>';
-// $userinput = 'a" onmouseover=”alert(\'XSS\')" asdf="';
-// $userinput = "3>2";
-//$userinput = "2<3"; // Interesting effect, huh?
+ // $userinput = 'a" onmouseover=”alert(\'XSS\')" asdf="';
+ // $userinput = "3>2";
+ //$userinput = "2<3"; // Interesting effect, huh?
 
 echo html_writer::div(s($userinput)); // Used when you want to escape the value.
 echo html_writer::div(format_string($userinput)); // Used for one-line strings, such as forum post subject.

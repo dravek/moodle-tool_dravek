@@ -60,7 +60,6 @@ class tool_dravek_tooltable extends table_sql {
         $this->setup();
         $this->set_sql('*',"{tool_dravek}", 'courseid = ?', [$courseid]);
 
-
     }
 
     /**
