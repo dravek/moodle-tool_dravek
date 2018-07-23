@@ -14,7 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * @package   tool_dravek
+ * @copyright 2018, David <davidmc@moodle.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 require_once(__DIR__ . '/../../../config.php');
+
 
 global $DB;
 
@@ -35,4 +42,19 @@ $total = $users->total;
 echo $OUTPUT->header();
 echo html_writer::div(get_string('helloworld', 'tool_dravek', ['id' => $courseid]));
 echo html_writer::div(get_string('testusers', 'tool_dravek', ['total' => $total]));
+
+//$userinput = 'no <b>tags</b> allowed in strings';
+$userinput = '<span class="multilang" lang="en">RIGHT</span><span class="multilang" lang="fr">WRONG</span>';
+// $userinput = 'a" onmouseover=”alert(\'XSS\')" asdf="';
+// $userinput = "3>2";
+//$userinput = "2<3"; // Interesting effect, huh?
+
+echo html_writer::div(s($userinput)); // Used when you want to escape the value.
+echo html_writer::div(format_string($userinput)); // Used for one-line strings, such as forum post subject.
+echo html_writer::div(format_text($userinput)); // Used for multil-line rich-text contents such as forum post body.
+
+
+$table = new tool_dravek_tooltable($courseid);
+$table->show();
+
 echo $OUTPUT->footer();

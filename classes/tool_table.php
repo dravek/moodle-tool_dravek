@@ -1,4 +1,6 @@
 <?php
+<?
+php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -13,16 +15,3 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-$string['pluginname'] = 'My first Moodle plugin';
-$string['helloworld'] = 'Hello World {$a->id}';
-$string['testusers'] = 'Total Users: {$a->total}';
-$string['yes'] = 'Yes';
-$string['no'] = 'No';
-$string['id'] = 'ID';
-$string['courseid'] = 'Course ID';
-$string['name'] = 'Name';
-$string['completed'] = 'Completed';
-$string['priority'] = 'Priority';
-$string['timecreated'] = 'Time Created';
-$string['timemodified'] = 'Time Modified';
