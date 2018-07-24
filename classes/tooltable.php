@@ -43,13 +43,13 @@ class tool_dravek_tooltable extends table_sql {
 
         $tablecolumns = array('id', 'courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified');
         $tableheaders = array(
-                get_string('id','tool_dravek'),
-                get_string('courseid','tool_dravek'),
-                get_string('name','tool_dravek'),
-                get_string('completed','tool_dravek'),
-                get_string('priority','tool_dravek'),
-                get_string('timecreated','tool_dravek'),
-                get_string('timemodified','tool_dravek')
+                get_string('id', 'tool_dravek'),
+                get_string('courseid', 'tool_dravek'),
+                get_string('name', 'tool_dravek'),
+                get_string('completed', 'tool_dravek'),
+                get_string('priority', 'tool_dravek'),
+                get_string('timecreated', 'tool_dravek'),
+                get_string('timemodified', 'tool_dravek')
         );
 
         parent::__construct('uniqueid');
@@ -70,9 +70,9 @@ class tool_dravek_tooltable extends table_sql {
      */
     protected function col_completed($row) {
         if ($row->completed) {
-            return get_string('yes','tool_dravek');
+            return get_string('yes', 'tool_dravek');
         } else {
-            return get_string('no','tool_dravek');
+            return get_string('no', 'tool_dravek');
         }
     }
 
@@ -101,6 +101,6 @@ class tool_dravek_tooltable extends table_sql {
      * show
      */
     public function show() {
-        $this->out(20,false);
+        $this->out(20, false);
     }
 }
