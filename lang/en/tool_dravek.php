@@ -14,6 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * @package   tool_dravek
+ * @copyright 2018, David <davidmc@moodle.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 $string['pluginname'] = 'My first Moodle plugin';
 $string['helloworld'] = 'Hello World {$a->id}';
 $string['testusers'] = 'Total Users: {$a->total}';
@@ -26,3 +32,5 @@ $string['completed'] = 'Completed';
 $string['priority'] = 'Priority';
 $string['timecreated'] = 'Time Created';
 $string['timemodified'] = 'Time Modified';
+$string['dravek:edit'] = 'dravek Edit';
+$string['dravek:view'] = 'dravek View';

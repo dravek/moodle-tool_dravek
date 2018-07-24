@@ -20,10 +20,23 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->component    = 'tool_dravek';
-$plugin->version      = 2018072401;
-$plugin->requires     = 2015111600;
-$plugin->release      = '1.6';
-$plugin->maturity     = MATURITY_STABLE;
+$capabilities = array(
+        'tool/dravek:view' => array(
+                'captype' => 'read',
+                'contextlevel' => CONTEXT_COURSE,
+                'archetypes' => array(
+                        'editingteacher' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                        'student' => CAP_ALLOW,
+                )
+        ),
+        'tool/dravek:edit' => array(
+                'riskbitmask' => RISK_SPAM,
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_COURSE,
+                'archetypes' => array(
+                        'editingteacher' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                )
+        ),
+);

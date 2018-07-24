@@ -23,7 +23,8 @@
 function xmldb_tool_dravek_upgrade($oldversion) {
     global $DB;
     $dbman = $DB->get_manager();
-    if ($oldversion < 2018072004) {
+
+    if ($oldversion < 2018072400) {
         // Define table tool_dravek to be created.
         $table = new xmldb_table('tool_dravek');
 
@@ -49,7 +50,7 @@ function xmldb_tool_dravek_upgrade($oldversion) {
         }
 
         // Dravek savepoint reached.
-        upgrade_plugin_savepoint(true, 2018072004, 'tool', 'dravek');
+        upgrade_plugin_savepoint(true, 2018072400, 'tool', 'dravek');
     }
 
     return true;
