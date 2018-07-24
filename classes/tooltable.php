@@ -58,7 +58,7 @@ class tool_dravek_tooltable extends table_sql {
         $this->define_headers($tableheaders);
         $this->define_baseurl($PAGE->url);
         $this->setup();
-        $this->set_sql('*',"{tool_dravek}", 'courseid = ?', [$courseid]);
+        $this->set_sql('*', "{tool_dravek}", 'courseid = ?', [$courseid]);
 
     }
 

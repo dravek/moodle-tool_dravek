@@ -27,8 +27,7 @@ function tool_dravek_extend_navigation_course($navigation, $course, $context) {
     $courseid = $PAGE->course->id;
 
     $context = context_course::instance($courseid);
-    if(has_capability('tool/dravek:view',$context))
-    {
+    if (has_capability('tool/dravek:view', $context)) {
         $navigation->add(
                 get_string('pluginname', 'tool_dravek'),
                 new moodle_url('/admin/tool/dravek/index.php?', array('id' => $courseid)),

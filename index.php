@@ -30,7 +30,7 @@ require_login($courseid);
 
  // Check if they have permission to VIEW
 $context = context_course::instance($courseid);
-require_capability('tool/dravek:view',$context);
+require_capability('tool/dravek:view', $context);
 
 $url = new moodle_url('/admin/tool/dravek/index.php', array('id' => $courseid));
 $PAGE->set_context(context_system::instance());
@@ -48,15 +48,15 @@ echo $OUTPUT->header();
 echo html_writer::div(get_string('helloworld', 'tool_dravek', ['id' => $courseid]));
 echo html_writer::div(get_string('testusers', 'tool_dravek', ['total' => $total]));
 
- //$userinput = 'no <b>tags</b> allowed in strings';
- //$userinput = '<span class="multilang" lang="en">RIGHT</span><span class="multilang" lang="fr">WRONG</span>';
- // $userinput = 'a" onmouseover=”alert(\'XSS\')" asdf="';
- // $userinput = "3>2";
- //$userinput = "2<3"; // Interesting effect, huh?
+// $userinput = 'no <b>tags</b> allowed in strings';
+// $userinput = '<span class="multilang" lang="en">RIGHT</span><span class="multilang" lang="fr">WRONG</span>';
+// $userinput = 'a" onmouseover=”alert(\'XSS\')" asdf="';
+// $userinput = "3>2";
+// $userinput = "2<3"; // Interesting effect, huh?
 
- //echo html_writer::div(s($userinput)); // Used when you want to escape the value.
- //echo html_writer::div(format_string($userinput)); // Used for one-line strings, such as forum post subject.
- //echo html_writer::div(format_text($userinput)); // Used for multil-line rich-text contents such as forum post body.
+// echo html_writer::div(s($userinput)); // Used when you want to escape the value.
+// echo html_writer::div(format_string($userinput)); // Used for one-line strings, such as forum post subject.
+// echo html_writer::div(format_text($userinput)); // Used for multil-line rich-text contents such as forum post body.
 
 $table = new tool_dravek_tooltable($courseid);
 $table->show();
