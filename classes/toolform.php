@@ -34,36 +34,36 @@ class tool_dravek_toolform extends moodleform {
         $mform = $this->_form; // Don't forget the underscore!
 
         $mform->addElement('text', 'name', get_string('name', 'tool_dravek'));
-        $mform->setType('name',PARAM_NOTAGS);
+        $mform->setType('name', PARAM_NOTAGS);
 
         $mform->addElement('advcheckbox', 'completed', get_string('completed', 'tool_dravek'), '', array('group' => 1), array(0, 1));
 
         $mform->addElement('hidden', 'courseid');
-        $mform->setType('courseid',PARAM_INT);
+        $mform->setType('courseid', PARAM_INT);
 
         if (!empty($this->_customdata['id'])) {
 
             $mform->addElement('hidden', 'id');
-            $mform->setType('id',PARAM_INT);
+            $mform->setType('id', PARAM_INT);
 
             $this->add_action_buttons(true, get_string('modify', 'tool_dravek'));
-        }else{
+        } else {
             $this->add_action_buttons(true, get_string('add', 'tool_dravek'));
         }
     }
 
     // Perform some extra moodle validation
-    function validation($data, $files) {
+    public function validation($data, $files) {
         global $DB;
 
-        $errors= array();
+        $errors = array();
 
         if (!empty($this->_customdata['id'])) {
-            if( $DB->record_exists_select('tool_dravek', 'name = ? AND courseid = ? AND id <> ?', array($data['name'], $data['courseid'], $data['id']) )) {
+            if ( $DB->record_exists_select('tool_dravek', 'name = ? AND courseid = ? AND id <> ?', array($data['name'], $data['courseid'], $data['id']) )) {
                 $errors['name'] = get_string('formcheckname', 'tool_dravek');
             }
         } else {
-            if( $DB->record_exists_select('tool_dravek', 'name = ? AND courseid = ?', array($data['name'], $data['courseid']) )) {
+            if ( $DB->record_exists_select('tool_dravek', 'name = ? AND courseid = ?', array($data['name'], $data['courseid']) )) {
                 $errors['name'] = get_string('formcheckname', 'tool_dravek');
             }
         }

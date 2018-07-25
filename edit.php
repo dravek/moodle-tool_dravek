@@ -25,12 +25,14 @@ require_once(__DIR__ . '/../../../config.php');
 global $DB;
 
 // If id is passed we get courseid from record on database instead of courseid parameter
-$id = optional_param('id', 0,PARAM_INT);
-if($id) {
-    $record = $DB->get_record('tool_dravek',['id' => $id],'*');
-    if($record) $courseid = $record->courseid;
+$id = optional_param('id', 0, PARAM_INT);
+if ($id) {
+    $record = $DB->get_record('tool_dravek', ['id' => $id], '*');
+    if ($record) {
+        $courseid = $record->courseid;
+    }
 } else {
-    $courseid = optional_param('courseid', 0,PARAM_INT);
+    $courseid = optional_param('courseid', 0, PARAM_INT);
     $record = (object)['courseid' => $courseid, 'id' => ''];
 }
 
@@ -59,8 +61,7 @@ if ($mform->is_cancelled()) {
     redirect($urlhome);
 } else if ($data = $mform->get_data()) {
 
-    if (!empty($data->id))
-    {
+    if (!empty($data->id)) {
         $DB->update_record('tool_dravek', [
             'id' => $data->id,
             'name' => $data->name,
@@ -77,7 +78,7 @@ if ($mform->is_cancelled()) {
                 'timemodified' => time()
         ], false);
     }
-redirect($urlhome);
+    redirect($urlhome);
 }
 
 // Display

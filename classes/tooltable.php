@@ -41,7 +41,7 @@ class tool_dravek_tooltable extends table_sql {
     public function __construct($courseid) {
         GLOBAL $PAGE;
 
-        $tablecolumns = array('id', 'courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified','action');
+        $tablecolumns = array('id', 'courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified', 'action');
         $tableheaders = array(
                 get_string('id', 'tool_dravek'),
                 get_string('courseid', 'tool_dravek'),
