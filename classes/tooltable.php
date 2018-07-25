@@ -41,7 +41,7 @@ class tool_dravek_tooltable extends table_sql {
     public function __construct($courseid) {
         GLOBAL $PAGE;
 
-        $tablecolumns = array('id', 'courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified');
+        $tablecolumns = array('id', 'courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified','action');
         $tableheaders = array(
                 get_string('id', 'tool_dravek'),
                 get_string('courseid', 'tool_dravek'),
@@ -49,7 +49,8 @@ class tool_dravek_tooltable extends table_sql {
                 get_string('completed', 'tool_dravek'),
                 get_string('priority', 'tool_dravek'),
                 get_string('timecreated', 'tool_dravek'),
-                get_string('timemodified', 'tool_dravek')
+                get_string('timemodified', 'tool_dravek'),
+                get_string('action', 'tool_dravek')
         );
 
         parent::__construct('uniqueid');
@@ -94,6 +95,17 @@ class tool_dravek_tooltable extends table_sql {
      */
     protected function col_timemodified($row) {
         return userdate($row->timemodified);
+    }
+
+
+    /**
+     * col_action
+     * @param $row
+     * @return string
+     */
+    protected function col_action($row) {
+        $url = new moodle_url('/admin/tool/dravek/edit.php', array('id' => $row->id));
+        return html_writer::link($url, get_string('edit', 'tool_dravek'));
     }
 
 

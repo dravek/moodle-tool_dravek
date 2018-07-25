@@ -33,13 +33,13 @@ $context = context_course::instance($courseid);
 require_capability('tool/dravek:view', $context);
 
 $url = new moodle_url('/admin/tool/dravek/index.php', array('id' => $courseid));
+$urledit = new moodle_url('/admin/tool/dravek/edit.php', array('courseid' => $courseid));
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
 $PAGE->set_pagelayout('report');
 $PAGE->set_title('Hello to the todo list');
 $PAGE->set_heading(get_string('pluginname', 'tool_dravek'));
-
-$PAGE->navbar->add(get_string('plugin'), new moodle_url($url));
+$PAGE->navbar->add(get_string('home'), new moodle_url($url));
 
 $users = $DB->get_record_sql('SELECT count(*) as total FROM {user}');
 $total = $users->total;
@@ -60,5 +60,10 @@ echo html_writer::div(get_string('testusers', 'tool_dravek', ['total' => $total]
 
 $table = new tool_dravek_tooltable($courseid);
 $table->show();
+
+$context = context_course::instance($courseid);
+if (has_capability('tool/dravek:edit', $context)) {
+    echo html_writer::link($urledit, get_string('new', 'tool_dravek'));
+}
 
 echo $OUTPUT->footer();
