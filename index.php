@@ -24,6 +24,15 @@ require_once(__DIR__ . '/../../../config.php');
 
 global $DB;
 
+if ($deleteid = optional_param('delete', null, PARAM_INT)) {
+    require_sesskey();
+    $record = $DB->get_record('tool_dravek', ['id' => $deleteid], '*', MUST_EXIST);
+    require_login(get_course($record->courseid));
+    require_capability('tool/dravek:edit', context_course::instance($record->courseid));
+    $DB->delete_records('tool_dravek', ['id' => $deleteid]);
+    redirect(new moodle_url('/admin/tool/dravek/index.php', ['id' => $record->courseid]));
+}
+
 $courseid = required_param('id', PARAM_INT);
 
 require_login($courseid);
