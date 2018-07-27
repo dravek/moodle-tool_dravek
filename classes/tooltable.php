@@ -54,7 +54,7 @@ class tool_dravek_tooltable extends table_sql {
         );
 
         parent::__construct('uniqueid');
-        $this->set_attribute('id','tool_dravek_table');
+        $this->set_attribute('id', 'tool_dravek_table');
 
         $this->define_columns($tablecolumns);
         $this->define_headers($tableheaders);

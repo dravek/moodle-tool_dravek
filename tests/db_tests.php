@@ -20,10 +20,25 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
-$plugin->component    = 'tool_dravek';
-$plugin->version      = 2018072700;
-$plugin->requires     = 2015111600;
-$plugin->release      = '2.0';
-$plugin->maturity     = MATURITY_STABLE;
+class tool_dravek_db_tests extends advanced_testcase {
+
+    public function test_insert_and_get() {
+        $this->resetAfterTest(true);
+
+        $data = (object)[
+            'name' => 'Test Name',
+            'completed' => 0,
+            'priority' => 0,
+            'courseid' => 2
+        ];
+
+        $id = tool_dravek_db::insert($data);
+
+        $record = tool_dravek_db::get($id);
+        $this->assertEquals('Test Name', $record->name);
+        $this->assertEquals('0', $record->completed);
+        $this->assertEquals('2', $record->courseid);
+    }
+}

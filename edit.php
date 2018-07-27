@@ -24,13 +24,11 @@ require_once(__DIR__ . '/../../../config.php');
 
 global $DB;
 
-// If id is passed we get courseid from record on database instead of courseid parameter
+// If id is passed we get courseid from record on database instead of courseid parameter.
 $id = optional_param('id', 0, PARAM_INT);
 if ($id) {
-    $record = $DB->get_record('tool_dravek', ['id' => $id], '*');
-    if ($record) {
-        $courseid = $record->courseid;
-    }
+    $record = tool_dravek_db::get($id);
+    $courseid = $record->courseid;
 } else {
     $courseid = optional_param('courseid', 0, PARAM_INT);
     $record = (object)['courseid' => $courseid, 'id' => ''];
@@ -38,7 +36,7 @@ if ($id) {
 
 require_login($courseid);
 
-// Check if they have permission to VIEW
+// Check if they have permission to VIEW.
 $context = context_course::instance($courseid);
 require_capability('tool/dravek:edit', $context);
 
@@ -56,32 +54,20 @@ $PAGE->navbar->add(get_string('edit'), new moodle_url($url));
 $mform = new tool_dravek_toolform(null,  array('id' => $record->id));
 $mform->set_data($record);
 
-// Process Form data
+// Process Form data.
 if ($mform->is_cancelled()) {
     redirect($urlhome);
 } else if ($data = $mform->get_data()) {
 
     if (!empty($data->id)) {
-        $DB->update_record('tool_dravek', [
-            'id' => $data->id,
-            'name' => $data->name,
-            'completed' => $data->completed,
-            'timemodified' => time()
-        ], false);
+        tool_dravek_db::update($data);
     } else {
-
-        $lastinsertid = $DB->insert_record('tool_dravek', [
-                'courseid' => $data->courseid,
-                'name' => $data->name,
-                'completed' => $data->completed,
-                'timecreated' => time(),
-                'timemodified' => time()
-        ], false);
+        tool_dravek_db::insert($data);
     }
     redirect($urlhome);
 }
 
-// Display
+// Display.
 echo $OUTPUT->header();
 $mform->display();
 echo html_writer::link($urlhome, get_string('home', 'tool_dravek'));
