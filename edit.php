@@ -52,6 +52,12 @@ $PAGE->set_heading(get_string('pluginname', 'tool_dravek'));
 $PAGE->navbar->add(get_string('edit'), new moodle_url($url));
 
 $mform = new tool_dravek_toolform(null,  array('id' => $record->id));
+
+$textfieldoptions = array('trusttext'=>true, 'subdirs'=>true, 'maxfiles'=>50, 'maxbytes'=>0, 'context'=>$context, 'noclean'=>0, 'enable_filemanagement' => true);
+if ($record->id) {
+    $context = context_course::instance($record->courseid);
+    file_prepare_standard_editor($record, 'description', $textfieldoptions, $context, 'tool_dravek', 'comments', $record->id);
+}
 $mform->set_data($record);
 
 // Process Form data.

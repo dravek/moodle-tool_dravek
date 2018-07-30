@@ -41,11 +41,12 @@ class tool_dravek_tooltable extends table_sql {
     public function __construct($courseid) {
         GLOBAL $PAGE;
 
-        $tablecolumns = array('id', 'courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified', 'action');
+        $tablecolumns = array('id', 'courseid', 'name', 'description', 'completed', 'priority', 'timecreated', 'timemodified', 'action');
         $tableheaders = array(
                 get_string('id', 'tool_dravek'),
                 get_string('courseid', 'tool_dravek'),
                 get_string('name', 'tool_dravek'),
+                get_string('description', 'tool_dravek'),
                 get_string('completed', 'tool_dravek'),
                 get_string('priority', 'tool_dravek'),
                 get_string('timecreated', 'tool_dravek'),
@@ -61,7 +62,6 @@ class tool_dravek_tooltable extends table_sql {
         $this->define_baseurl($PAGE->url);
         $this->setup();
         $this->set_sql('*', "{tool_dravek}", 'courseid = ?', [$courseid]);
-
     }
 
     /**
@@ -110,18 +110,31 @@ class tool_dravek_tooltable extends table_sql {
 
 
     /**
-     * col_action
      * @param $row
      * @return string
+     * @throws coding_exception
+     * @throws moodle_exception
      */
     protected function col_action($row) {
         $url = new moodle_url('/admin/tool/dravek/edit.php', array('id' => $row->id));
         $urldelete = new moodle_url('/admin/tool/dravek/index.php', array('delete' => $row->id, 'sesskey' => sesskey()));
 
         return html_writer::link($url, get_string('edit', 'tool_dravek'), ['title' => get_string('editentrytitle', 'tool_dravek', format_string($row->name))]) .' '. html_writer::link($urldelete, get_string('delete', 'tool_dravek'));
-
     }
 
+
+    /**
+     * col_timecreated
+     * @param $row
+     * @return string
+     */
+    protected function col_description($row) {
+
+        $context = context_course::instance($row->courseid);
+
+        return file_rewrite_pluginfile_urls($row->description, 'pluginfile.php',
+                $context->id, 'tool_dravek', 'comments', $row->id);
+    }
 
     /**
      * show

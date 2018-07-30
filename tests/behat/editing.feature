@@ -62,3 +62,24 @@ Feature: Creating, editing and deleting entries
     And I press "Add"
     Then I should see "test entry 3"
     And I log out
+
+  Scenario: Add and edit an entry with editor
+    When I log in as "teacher"
+    And I follow "Learn Vim"
+    And I navigate to "My first Moodle plugin" in current page administration
+    And I click on "New" "link" in the "region-main" "region"
+    And I set the following fields to these values:
+      | Name      | test entry 1   |
+      | Comments  | Bye            |
+    And I press "Add"
+    Then the following should exist in the "tool_dravek_table" table:
+      | Name         | Description |
+      | test entry 1 | Bye         |
+    And I click on "Edit" "link" in the "test entry 1" "table_row"
+    And I set the following fields to these values:
+      | Completed | 1            |
+    And I press "Modify"
+    And the following should exist in the "tool_dravek_table" table:
+      | Name         | Description |
+      | test entry 1 | Bye         |
+    And I log out

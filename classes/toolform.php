@@ -30,6 +30,7 @@ require_once($CFG->libdir . '/formslib.php');
 class tool_dravek_toolform extends moodleform {
 
     public function definition() {
+        global $PAGE;
 
         $mform = $this->_form; // Don't forget the underscore!
 
@@ -40,6 +41,11 @@ class tool_dravek_toolform extends moodleform {
 
         $mform->addElement('hidden', 'courseid');
         $mform->setType('courseid', PARAM_INT);
+
+        $descriptioneditoroptions = array('trusttext'=>true, 'subdirs'=>true, 'maxfiles'=>5, 'maxbytes'=>0, 'context'=>$PAGE->context, 'noclean'=>0, 'enable_filemanagement' => true);
+
+        $mform->addElement('editor', 'description_editor', get_string('comments', 'tool_dravek'), null, $descriptioneditoroptions);
+        $mform->setType('description_editor', PARAM_RAW);
 
         if (!empty($this->_customdata['id'])) {
 
@@ -67,7 +73,6 @@ class tool_dravek_toolform extends moodleform {
                 $errors['name'] = get_string('formcheckname', 'tool_dravek');
             }
         }
-
         return $errors;
     }
 }

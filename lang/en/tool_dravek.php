@@ -43,3 +43,5 @@ $string['modify'] = 'Modify';
 $string['new'] = 'New';
 $string['delete'] = 'Delete';
 $string['editentrytitle'] = 'Edit entry {$a}';
+$string['comments'] = 'Comments';
+$string['description'] = 'Description';

@@ -33,12 +33,13 @@ $capabilities = array(
                 )
         ),
         'tool/dravek:edit' => array(
-                'riskbitmask' => RISK_SPAM,
+                'riskbitmask' => RISK_XSS,
                 'captype' => 'write',
                 'contextlevel' => CONTEXT_COURSE,
                 'archetypes' => array(
                         'editingteacher' => CAP_ALLOW,
                         'teacher' => CAP_ALLOW,
-                )
+                ),
+                'noclean' => true
         ),
 );

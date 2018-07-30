@@ -44,12 +44,25 @@ class tool_dravek_db {
     public static function update($data) {
         global $DB;
 
-        $DB->update_record('tool_dravek', [
+        $updatearray = [
                 'id' => $data->id,
                 'name' => $data->name,
                 'completed' => $data->completed,
                 'timemodified' => time()
-        ], false);
+        ];
+
+        $context = context_course::instance($data->courseid);
+
+        if( isset($data->description_editor) ) {
+
+            $textfieldoptions = array('trusttext'=>true, 'subdirs'=>true, 'maxfiles'=>5, 'maxbytes'=>0, 'context'=>$context, 'noclean'=>0, 'enable_filemanagement' => true);
+
+            $data = file_postupdate_standard_editor($data, 'description', $textfieldoptions, $context, 'tool_dravek', 'comments', $data->id);
+
+            $updatearray = array_merge($updatearray, ['description' => $data->description, 'descriptionformat' => $data->descriptionformat]);
+        }
+
+        $DB->update_record('tool_dravek', $updatearray);
     }
 
     /**
@@ -61,13 +74,30 @@ class tool_dravek_db {
     public static function insert($data) {
         global $DB;
 
-        return $DB->insert_record('tool_dravek', [
+        $insertid = $DB->insert_record('tool_dravek', (object)[
                 'courseid' => $data->courseid,
                 'name' => $data->name,
                 'completed' => $data->completed,
                 'timecreated' => time(),
                 'timemodified' => time()
         ], true);
+
+        if( isset($data->description_editor) ) {
+
+            $context = context_course::instance($data->courseid);
+
+            $textfieldoptions = array('trusttext'=>true, 'subdirs'=>true, 'maxfiles'=>5, 'maxbytes'=>0, 'context'=>$context, 'noclean'=>0, 'enable_filemanagement' => true);
+
+            $data = file_postupdate_standard_editor($data, 'description', $textfieldoptions, $context, 'tool_dravek', 'comments', $insertid);
+
+            $DB->update_record('tool_dravek', (object)[
+                    'id' => $insertid,
+                    'description' => $data->description,
+                    'descriptionformat' => $data->descriptionformat
+            ]);
+        }
+
+        return $insertid;
     }
 
     /**
