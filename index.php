@@ -42,7 +42,6 @@ $context = context_course::instance($courseid);
 require_capability('tool/dravek:view', $context);
 
 $url = new moodle_url('/admin/tool/dravek/index.php', array('id' => $courseid));
-$urledit = new moodle_url('/admin/tool/dravek/edit.php', array('courseid' => $courseid));
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
@@ -51,15 +50,9 @@ $PAGE->set_title('Hello to the todo list');
 $PAGE->set_heading(get_string('pluginname', 'tool_dravek'));
 $PAGE->navbar->add(get_string('home'), new moodle_url($url));
 
-$table = new tool_dravek_tooltable($courseid);
+$output = $PAGE->get_renderer('tool_dravek');
+$outputpage = new \tool_dravek\output\mypage($courseid);
 
-echo $OUTPUT->header();
-
-$table->show();
-
-$context = context_course::instance($courseid);
-if (has_capability('tool/dravek:edit', $context)) {
-    echo html_writer::link($urledit, get_string('new', 'tool_dravek'));
-}
-
-echo $OUTPUT->footer();
+echo $output->header();
+echo $output->render($outputpage);
+echo $output->footer();

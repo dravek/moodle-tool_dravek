@@ -109,6 +109,7 @@ class tool_dravek_tooltable extends table_sql {
     }
 
 
+
     /**
      * @param $row
      * @return string
