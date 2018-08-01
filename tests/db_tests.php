@@ -34,7 +34,6 @@ class tool_dravek_db_tests extends advanced_testcase {
         $data = (object)[
             'name' => 'Test Name',
             'completed' => 0,
-            'priority' => 3,
             'courseid' => 2
         ];
 
@@ -43,7 +42,6 @@ class tool_dravek_db_tests extends advanced_testcase {
         $record = tool_dravek_db::get($id);
         $this->assertEquals('Test Name', $record->name);
         $this->assertEquals('0', $record->completed);
-        $this->assertEquals('3', $record->priority);
         $this->assertEquals('2', $record->courseid);
     }
 

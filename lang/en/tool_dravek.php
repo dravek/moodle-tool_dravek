@@ -45,3 +45,4 @@ $string['delete'] = 'Delete';
 $string['editentrytitle'] = 'Edit entry {$a}';
 $string['comments'] = 'Comments';
 $string['description'] = 'Description';
+$string['confirmdelete'] = 'Are you sure?';
