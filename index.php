@@ -37,7 +37,7 @@ $courseid = required_param('id', PARAM_INT);
 
 require_login($courseid);
 
-//$PAGE->requires->js_call_amd('tool_dravek/form', 'init', array('confirmdelete' => get_string('confirmdelete', 'tool_dravek')));
+// $PAGE->requires->js_call_amd('tool_dravek/form', 'init', array('confirmdelete' => get_string('confirmdelete', 'tool_dravek')));
 
  // Check if they have permission to VIEW.
 $context = context_course::instance($courseid);

@@ -46,3 +46,4 @@ $string['editentrytitle'] = 'Edit entry {$a}';
 $string['comments'] = 'Comments';
 $string['description'] = 'Description';
 $string['confirmdelete'] = 'Are you sure?';
+$string['evententryadded'] = 'New Entry Added';

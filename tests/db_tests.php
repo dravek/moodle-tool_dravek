@@ -24,28 +24,7 @@ defined('MOODLE_INTERNAL') || die;
 
 class tool_dravek_db_tests extends advanced_testcase {
 
-    /**
-     * test_insert_and_get
-     * @throws dml_exception
-     */
-    public function test_insert_and_get() {
-        $this->resetAfterTest(true);
-
-        $data = (object)[
-            'name' => 'Test Name',
-            'completed' => 0,
-            'courseid' => 2
-        ];
-
-        $id = tool_dravek_db::insert($data);
-
-        $record = tool_dravek_db::get($id);
-        $this->assertEquals('Test Name', $record->name);
-        $this->assertEquals('0', $record->completed);
-        $this->assertEquals('2', $record->courseid);
-    }
-
-    /**
+     /**
      * test_editor
      * @throws dml_exception
      */

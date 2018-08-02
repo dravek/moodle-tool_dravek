@@ -20,10 +20,13 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
-$plugin->component    = 'tool_dravek';
-$plugin->version      = 2018080200;
-$plugin->requires     = 2015111600;
-$plugin->release      = '2.4';
-$plugin->maturity     = MATURITY_STABLE;
+class tool_dravek_observer {
+
+    public static function course_content_removed(\core\event\course_content_deleted $event) {
+        global $DB;
+
+        $DB->delete_records('tool_dravek', ['courseid' => $event->courseid]);
+    }
+}
