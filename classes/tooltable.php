@@ -120,7 +120,8 @@ class tool_dravek_tooltable extends table_sql {
         $url = new moodle_url('/admin/tool/dravek/edit.php', array('id' => $row->id));
         $urldelete = new moodle_url('/admin/tool/dravek/index.php', array('delete' => $row->id, 'sesskey' => sesskey()));
 
-        return html_writer::link($url, get_string('edit', 'tool_dravek'), ['title' => get_string('editentrytitle', 'tool_dravek', format_string($row->name))]) .' '. html_writer::link($urldelete, get_string('delete', 'tool_dravek'), array('class' => 'confirm_delete'));
+        $out = html_writer::link($url, get_string('edit', 'tool_dravek'), ['title' => get_string('editentrytitle', 'tool_dravek', format_string($row->name))]);
+        return $out.' '. html_writer::link($urldelete, get_string('delete', 'tool_dravek'), array('class' => 'confirm_delete', 'data-id' => $row->id, 'data-courseid' => $row->courseid));
     }
 
 
@@ -130,7 +131,6 @@ class tool_dravek_tooltable extends table_sql {
      * @return string
      */
     protected function col_description($row) {
-
         $context = context_course::instance($row->courseid);
 
         return file_rewrite_pluginfile_urls($row->description, 'pluginfile.php',

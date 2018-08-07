@@ -51,7 +51,7 @@ class mypage implements renderable, templatable{
         $urledit = new \moodle_url('/admin/tool/dravek/edit.php', array('courseid' => $this->courseid));
 
         if (has_capability('tool/dravek:edit', $context)) {
-            $data['new_link'] = $urledit;
+            $data['new_link'] = $urledit->out(false);
             $data['new_text'] = get_string('new', 'tool_dravek');
         }
 

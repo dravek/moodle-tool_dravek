@@ -20,7 +20,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'My first Moodle plugin';
+$string['pluginname'] = 'My ToDo Moodle plugin';
 $string['helloworld'] = 'Hello World {$a->id}';
 $string['testusers'] = 'Total Users: {$a->total}';
 $string['yes'] = 'Yes';

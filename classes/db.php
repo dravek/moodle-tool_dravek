@@ -99,10 +99,8 @@ class tool_dravek_db {
 
         // event
         $context = context_course::instance($data->courseid);
-        $event = \tool_dravek\event\entry_added::create(
-                array('context'=>$context,
-                        'objectid'=>$data->courseid)
-                );
+        $event = \tool_dravek\event\entry_added::create(array('context' => $context,
+                        'objectid' => $data->courseid));
         $event->trigger();
 
         return $insertid;

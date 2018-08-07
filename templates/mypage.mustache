@@ -40,10 +40,12 @@
 
   }}
 
+<div data-region="list-page">
  <h3>{{user_name}}'s Todos</h3>
  {{{table}}}
  <br>
  <a href="{{new_link}}" class="btn btn-success">{{new_text}}</a>
+</div>
 
  {{#js}}
      require(['tool_dravek/form'], function(s) {
