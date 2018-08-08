@@ -63,7 +63,8 @@ function tool_dravek_pluginfile($course, $cm, $context, $filearea, $args, $force
         return false;
     }
 
-    // Make sure the user is logged in and has access to the module (plugins that are not course modules should leave out the 'cm' part).
+    // Make sure the user is logged in and has access to the module.
+    // Plugins that are not course modules should leave out the 'cm' part.
     require_login($course, true, $cm);
 
     // Check the relevant capabilities - these may vary depending on the filearea being accessed.
@@ -80,9 +81,9 @@ function tool_dravek_pluginfile($course, $cm, $context, $filearea, $args, $force
     // Extract the filename / filepath from the $args array.
     $filename = array_pop($args); // The last item in the $args array.
     if (!$args) {
-        $filepath = '/'; // $args is empty => the path is '/'
+        $filepath = '/';
     } else {
-        $filepath = '/'.implode('/', $args).'/'; // $args contains elements of the filepath
+        $filepath = '/'.implode('/', $args).'/';
     }
 
     // Retrieve the file from the Files API.

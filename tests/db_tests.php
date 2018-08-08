@@ -24,10 +24,6 @@ defined('MOODLE_INTERNAL') || die;
 
 class tool_dravek_db_tests extends advanced_testcase {
 
-      /**
-      * test_editor
-      * @throws dml_exception
-      */
     public function test_editor() {
         $this->resetAfterTest(true);
         $course = $this->getDataGenerator()->create_course();
