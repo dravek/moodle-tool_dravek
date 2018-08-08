@@ -24,10 +24,10 @@ defined('MOODLE_INTERNAL') || die;
 
 class tool_dravek_db_tests extends advanced_testcase {
 
-     /**
-     * test_editor
-     * @throws dml_exception
-     */
+      /**
+      * test_editor
+      * @throws dml_exception
+      */
     public function test_editor() {
         $this->resetAfterTest(true);
         $course = $this->getDataGenerator()->create_course();
@@ -36,11 +36,11 @@ class tool_dravek_db_tests extends advanced_testcase {
                 'name' => 'test 1',
                 'completed' => 0,
                 'priority' => 1,
-                'courseid' =>  $course->id,
+                'courseid' => $course->id,
                 'description_editor' => [
                         'text' => 'Hello there',
                         'format' => FORMAT_HTML
-            ]
+                ]
         ];
 
         $id = tool_dravek_db::insert($data);

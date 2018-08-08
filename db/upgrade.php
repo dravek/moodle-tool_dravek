@@ -60,8 +60,8 @@ function xmldb_tool_dravek_upgrade($oldversion) {
         // Define table tool_dravek to be created.
         $table = new xmldb_table('tool_dravek');
 
-        //// Adding fields to table tool_dravek.
-       $table->add_field('description', XMLDB_TYPE_TEXT, null, null, null, null, null);
+        // Adding fields to table tool_dravek.
+        $table->add_field('description', XMLDB_TYPE_TEXT, null, null, null, null, null);
         $table->add_field('descriptionformat', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
 
         // Conditionally launch create table for tool_dravek.

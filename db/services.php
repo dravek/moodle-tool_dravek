@@ -46,6 +46,6 @@ $services = array(
         'tool_dravek services' => array(
                 'functions' => array ('tool_dravek_delete_entry', 'tool_dravek_reload_template'),
                 'restrictedusers' => 0,
-                'enabled'=>1,
+                'enabled' => 1,
         )
 );

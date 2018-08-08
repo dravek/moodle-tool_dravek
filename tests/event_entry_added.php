@@ -29,7 +29,7 @@ class tool_dravek_event_entry_added extends advanced_testcase {
         // Create a course.
         $data = new stdClass();
         $course = $this->getDataGenerator()->create_course($data);
-        // Trigger an event
+        // Trigger an event.
         $event = \tool_dravek\event\entry_added::create(
                 array('context' => context_course::instance($course->id),
                         'objectid' => $course->id)

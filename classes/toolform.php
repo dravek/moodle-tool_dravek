@@ -42,9 +42,15 @@ class tool_dravek_toolform extends moodleform {
         $mform->addElement('hidden', 'courseid');
         $mform->setType('courseid', PARAM_INT);
 
-        $descriptioneditoroptions = array('trusttext' => true, 'subdirs' => true, 'maxfiles' => 5, 'maxbytes' => 0, 'context' => $PAGE->context, 'noclean' => 0, 'enable_filemanagement' => true);
+        $desceditoroptions = array('trusttext' => true,
+                                    'subdirs' => true,
+                                    'maxfiles' => 5,
+                                    'maxbytes' => 0,
+                                    'context' => $PAGE->context,
+                                    'noclean' => 0,
+                                    'enable_filemanagement' => true);
 
-        $mform->addElement('editor', 'description_editor', get_string('comments', 'tool_dravek'), null, $descriptioneditoroptions);
+        $mform->addElement('editor', 'description_editor', get_string('comments', 'tool_dravek'), null, $desceditoroptions);
         $mform->setType('description_editor', PARAM_RAW);
 
         if (!empty($this->_customdata['id'])) {
@@ -59,7 +65,7 @@ class tool_dravek_toolform extends moodleform {
     }
 
     // Perform some extra moodle validation
-    public function validation($data, $files) {
+    public function validation($data, $files = array()) {
         global $DB;
 
         $errors = array();

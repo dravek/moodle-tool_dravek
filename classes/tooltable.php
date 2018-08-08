@@ -121,7 +121,8 @@ class tool_dravek_tooltable extends table_sql {
         $urldelete = new moodle_url('/admin/tool/dravek/index.php', array('delete' => $row->id, 'sesskey' => sesskey()));
 
         $out = html_writer::link($url, get_string('edit', 'tool_dravek'), ['title' => get_string('editentrytitle', 'tool_dravek', format_string($row->name))]);
-        return $out.' '. html_writer::link($urldelete, get_string('delete', 'tool_dravek'), array('class' => 'confirm_delete', 'data-id' => $row->id, 'data-courseid' => $row->courseid));
+        $modal = array('class' => 'confirm_delete', 'data-id' => $row->id, 'data-courseid' => $row->courseid);
+        return $out.' '. html_writer::link($urldelete, get_string('delete', 'tool_dravek'), $modal);
     }
 
 

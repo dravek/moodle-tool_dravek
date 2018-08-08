@@ -55,7 +55,13 @@ class tool_dravek_db {
 
         if ( isset($data->description_editor) ) {
 
-            $textfieldoptions = array('trusttext' => true, 'subdirs' => true, 'maxfiles' => 5, 'maxbytes' => 0, 'context' => $context, 'noclean' => 0, 'enable_filemanagement' => true);
+            $textfieldoptions = array('trusttext' => true,
+                                        'subdirs' => true,
+                                        'maxfiles' => 5,
+                                        'maxbytes' => 0,
+                                        'context' => $context,
+                                        'noclean' => 0,
+                                        'enable_filemanagement' => true);
 
             $data = file_postupdate_standard_editor($data, 'description', $textfieldoptions, $context, 'tool_dravek', 'comments', $data->id);
 
@@ -86,7 +92,13 @@ class tool_dravek_db {
 
             $context = context_course::instance($data->courseid);
 
-            $textfieldoptions = array('trusttext' => true, 'subdirs' => true, 'maxfiles' => 5, 'maxbytes' => 0, 'context' => $context, 'noclean' => 0, 'enable_filemanagement' => true);
+            $textfieldoptions = array('trusttext' => true,
+                                        'subdirs' => true,
+                                        'maxfiles' => 5,
+                                        'maxbytes' => 0,
+                                        'context' => $context,
+                                        'noclean' => 0,
+                                        'enable_filemanagement' => true);
 
             $data = file_postupdate_standard_editor($data, 'description', $textfieldoptions, $context, 'tool_dravek', 'comments', $insertid);
 

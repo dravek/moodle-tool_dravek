@@ -40,7 +40,7 @@ require_login($courseid);
 $context = context_course::instance($courseid);
 require_capability('tool/dravek:edit', $context);
 
-// Create URLs
+// Create URLs.
 $url = new moodle_url('/admin/tool/dravek/edit.php', array('courseid' => $courseid));
 $urlhome = new moodle_url('/admin/tool/dravek/index.php', ['id' => $courseid]);
 
