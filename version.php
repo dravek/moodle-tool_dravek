@@ -23,7 +23,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component    = 'tool_dravek';
-$plugin->version      = 2018080700;
+$plugin->version      = 2018080800;
 $plugin->requires     = 2015111600;
 $plugin->release      = '2.5';
 $plugin->maturity     = MATURITY_STABLE;
