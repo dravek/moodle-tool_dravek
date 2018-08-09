@@ -19,7 +19,7 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot . '/backup/moodle2/restore_tool_plugin.class.php');
 
 class restore_tool_dravek_plugin extends restore_tool_plugin {
-    protected $tool_dravek;
+    protected $tooldravek;
 
     protected function define_course_plugin_structure() {
         $paths = array();
@@ -39,7 +39,7 @@ class restore_tool_dravek_plugin extends restore_tool_plugin {
         // Now we can insert the new record.
         $data->id = $DB->insert_record('tool_dravek', $data);
         // Add the array of tools we need to process later.
-        $this->tool_dravek[$data->id] = $data;
+        $this->tooldravek[$data->id] = $data;
         // Set up the mapping.
         $this->set_mapping('tool_dravek', $oldid, $data->id);
 
