@@ -32,6 +32,8 @@ require_once($CFG->libdir . '/tablelib.php');
  */
 class tool_dravek_tooltable extends table_sql {
 
+    protected $courseid;
+
     /**
      * tool_dravek_tooltable constructor.
      *
@@ -41,7 +43,18 @@ class tool_dravek_tooltable extends table_sql {
     public function __construct($courseid) {
         GLOBAL $PAGE;
 
-        $tablecolumns = array('id', 'courseid', 'name', 'description', 'completed', 'priority', 'timecreated', 'timemodified', 'action');
+        $this->courseid = $courseid;
+
+        $tablecolumns = array('id',
+                            'courseid',
+                            'name',
+                            'description',
+                            'completed',
+                            'priority',
+                            'timecreated',
+                            'timemodified',
+                            'action');
+
         $tableheaders = array(
                 get_string('id', 'tool_dravek'),
                 get_string('courseid', 'tool_dravek'),
@@ -117,12 +130,17 @@ class tool_dravek_tooltable extends table_sql {
      * @throws moodle_exception
      */
     protected function col_action($row) {
-        $url = new moodle_url('/admin/tool/dravek/edit.php', array('id' => $row->id));
-        $urldelete = new moodle_url('/admin/tool/dravek/index.php', array('delete' => $row->id, 'sesskey' => sesskey()));
 
-        $out = html_writer::link($url, get_string('edit', 'tool_dravek'), ['title' => get_string('editentrytitle', 'tool_dravek', format_string($row->name))]);
-        $modal = array('class' => 'confirm_delete', 'data-id' => $row->id, 'data-courseid' => $row->courseid);
-        return $out.' '. html_writer::link($urldelete, get_string('delete', 'tool_dravek'), $modal);
+        $context = context_course::instance($this->courseid);
+
+        if (has_capability('tool/dravek:edit', $context)) {
+            $url = new moodle_url('/admin/tool/dravek/edit.php', array('id' => $row->id));
+            $urldelete = new moodle_url('/admin/tool/dravek/index.php', array('delete' => $row->id, 'sesskey' => sesskey()));
+
+            $out = html_writer::link($url, get_string('edit', 'tool_dravek'), ['title' => get_string('editentrytitle', 'tool_dravek', format_string($row->name))]);
+            $modal = array('class' => 'confirm_delete', 'data-id' => $row->id, 'data-courseid' => $row->courseid);
+            return $out.' '. html_writer::link($urldelete, get_string('delete', 'tool_dravek'), $modal);
+        }
     }
 
 

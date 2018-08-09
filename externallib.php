@@ -28,11 +28,14 @@ class tool_dravek_external extends external_api {
 
     public static function delete_entry_parameters() {
         return new external_function_parameters(
-                array('id' => new external_value(PARAM_INT, 'Entry ID to delete', VALUE_REQUIRED))
+                array('id' => new external_value(PARAM_INT, 'Entry ID to delete', VALUE_REQUIRED),
+                        'courseid' => new external_value(PARAM_INT, 'Course ID to check capablity', VALUE_REQUIRED))
         );
     }
 
-    public static function delete_entry($id) {
+    public static function delete_entry($id, $courseid) {
+        $context = context_course::instance($courseid);
+        require_capability('tool/dravek:edit', $context);
         tool_dravek_db::delete($id);
     }
 

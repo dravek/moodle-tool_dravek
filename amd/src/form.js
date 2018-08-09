@@ -10,7 +10,7 @@ define(['jquery', 'core/str', 'core/notification', 'core/ajax', 'core/templates'
                 notification.confirm(s[0], s[1], s[2], s[3], function() {
                     //window.location.href = href;
                     var promises = ajax.call([
-                        {methodname: 'tool_dravek_delete_entry', args: { id: id}},
+                        {methodname: 'tool_dravek_delete_entry', args: { id: id, courseid: courseid}},
                         {methodname: 'tool_dravek_reload_template', args: { courseid: courseid}}
                     ]);
                     promises[1].done(function(response) {
