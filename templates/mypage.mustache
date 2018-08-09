@@ -34,10 +34,9 @@
     {
         "user_name": "David",
         "table": "list of todos",
-        "new_link": "link to new page",
+        "new_link": "url",
         "new_text": "link text"
     }
-
   }}
 
 <div data-region="list-page">
@@ -46,9 +45,8 @@
  <br>
  <a href="{{new_link}}" class="btn btn-success">{{new_text}}</a>
 </div>
-
- {{#js}}
-     require(['tool_dravek/form'], function(s) {
-         s.init();
-     });
- {{/js}}
+{{#js}}
+    require(['tool_dravek/form'], function(s) {
+        s.init();
+    });
+{{/js}}
